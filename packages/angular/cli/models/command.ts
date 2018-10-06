@@ -8,7 +8,9 @@
 
 // tslint:disable:no-global-tslint-disable no-any
 import { logging, strings, tags, terminal } from '@angular-devkit/core';
+import * as marked from 'marked';
 import { getWorkspace } from '../utilities/config';
+import generateHelpMarkdown from '../utilities/generate-help-markdown';
 import {
   Arguments,
   CommandContext,
@@ -16,8 +18,10 @@ import {
   CommandDescriptionMap,
   CommandScope,
   CommandWorkspace,
-  Option, SubCommandDescription,
+  Option,
+  SubCommandDescription,
 } from './interface';
+import { TerminalRenderer } from './terminal-renderer';
 
 export interface BaseCommandOptions {
   help?: boolean | string;
@@ -44,9 +48,22 @@ export abstract class Command<T extends BaseCommandOptions = BaseCommandOptions>
     return;
   }
 
+  async generateHelpMarkdown() {
+    return generateHelpMarkdown({
+      description: this.description,
+      strings,
+    });
+  }
+
   async printHelp(options: T & Arguments): Promise<number> {
-    await this.printHelpUsage();
-    await this.printHelpOptions();
+    const markdown = await this.generateHelpMarkdown();
+
+    // Render the Markdown.
+    marked.setOptions({
+      renderer: new TerminalRenderer(),
+    });
+
+    this.logger.info(marked(markdown));
 
     return 0;
   }
