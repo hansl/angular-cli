@@ -263,6 +263,14 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
+"@types/blessed@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@types/blessed/-/blessed-0.1.10.tgz#9d60bdb49ef54ad91a80a1a15477759fd787a6d0"
+  integrity sha512-lCpkGnCq2lj9RBPwh/RH/ZJegYV6JdyyRHmURIW1DwMdtNhRRxYeHllqaMu8K6bDf6zhO7PpHsmEqlYMDPlmhw==
+  dependencies:
+    "@types/events" "*"
+    "@types/node" "*"
+
 "@types/body-parser@*":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.17.0.tgz#9f5c9d9bd04bb54be32d5eb9fc0d8c974e6cf58c"
@@ -1462,6 +1470,11 @@ bl@~1.1.2:
   integrity sha1-/cqHGplxOqANGeO7ukHER4emU5g=
   dependencies:
     readable-stream "~2.0.5"
+
+blessed@^0.1.81:
+  version "0.1.81"
+  resolved "https://registry.yarnpkg.com/blessed/-/blessed-0.1.81.tgz#f962d687ec2c369570ae71af843256e6d0ca1129"
+  integrity sha1-+WLWh+wsNpVwrnGvhDJW5tDKESk=
 
 blob@0.0.4:
   version "0.0.4"
