@@ -333,3 +333,28 @@ export function scheduleTargetAndForget(
     })),
   );
 }
+
+
+/**
+ * Get options from a target, apply overrides, then validate this against a Builder's target.
+ * This is a simpler function to use in general, as most people will want to perform this operation.
+ *
+ * If you're using this function as a generic, you should ensure you know which interface
+ * corresponds to your target, otherwise you might get an object that does not match your
+ * interface.
+ *
+ * @param context The context of your current execution.
+ * @param target The target to get options from.
+ * @param overrides An optional object that contains overrides to add before validation.
+ * @returns An object (or interface) that has gone through validation.
+ */
+export async function getValidatedOptionsFromTarget<T extends json.JsonObject = json.JsonObject>(
+  context: BuilderContext,
+  target: Target,
+  overrides?: json.JsonObject,
+): Promise<T> {
+  const rawOptions = await context.getTargetOptions(target);
+  const builderName = await context.getBuilderNameForTarget(target);
+
+  return await context.validateOptions({ ...rawOptions, ...overrides }, builderName);
+}
