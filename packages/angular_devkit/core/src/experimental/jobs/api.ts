@@ -144,7 +144,7 @@ export enum JobOutboundMessageKind {
 }
 
 /** Base interface for the all job messages. */
-export interface JobOutboundMessageBase {
+export interface JobOutboundMessageBase extends JsonObject {
   /**
    * The job description.
    */

@@ -18,6 +18,7 @@ import {
   of,
 } from 'rxjs';
 import {
+  catchError,
   concatMap,
   filter,
   first,
